@@ -15,3 +15,8 @@ clc;
 filename = 'AN119_RED';
 
 [iaLocal, ibLocal, icLocal, iaRemoto, ibRemoto, icRemoto ] = adquire_sinal(filename);
+
+IopMin = 1; % A
+k = 1;
+
+plota_grafico_diferencial(k, IopMin);
