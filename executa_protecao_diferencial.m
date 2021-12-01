@@ -1,4 +1,4 @@
-function [sinal_de_atuacao] = protecao_diferencial(Ilocal, Iremoto, IopMin, k, animacao = false)
+function [sinal_de_atuacao] = executa_protecao_diferencial(Ilocal, Iremoto, IopMin, k, animacao = false)
     correnteDeOperacao = [];
     correnteDeResistencia = [];
     atuacao = [];
