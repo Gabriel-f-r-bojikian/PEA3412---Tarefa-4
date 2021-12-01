@@ -20,7 +20,7 @@ IopMin = 5.5; % A
 k = 0.5;
 
 % Varre o sinal de corrente da fase A e executa a proteção diferencial se necessário
-sinal_digital_de_atuacao_protecao_fase_A = protecao_diferencial(iaLocal, iaRemoto, IopMin, k);
+sinal_digital_de_atuacao_protecao_fase_A = executa_protecao_diferencial(iaLocal, iaRemoto, IopMin, k);
 
   % Plota o sinal digital de proteção
   figure;
@@ -32,7 +32,7 @@ sinal_digital_de_atuacao_protecao_fase_A = protecao_diferencial(iaLocal, iaRemot
   disp(["Amostra de atuacao: ", num2str(amostra_atuacao_fase_A), " - ", num2str(amostra_atuacao_fase_A*1000/(16*60)), " ms apos inicio do sinal"]);
 
 % Varre o sinal de corrente da fase B e executa a proteção diferencial se necessário
-sinal_digital_de_atuacao_protecao_fase_B = protecao_diferencial(ibLocal, ibRemoto, IopMin, k);
+sinal_digital_de_atuacao_protecao_fase_B = executa_protecao_diferencial(ibLocal, ibRemoto, IopMin, k);
   
   % Plota o sinal digital de proteção
   figure;
@@ -45,7 +45,7 @@ sinal_digital_de_atuacao_protecao_fase_B = protecao_diferencial(ibLocal, ibRemot
 
 
 % Varre o sinal de corrente da fase C e executa a proteção diferencial se necessário
-sinal_digital_de_atuacao_protecao_fase_C = protecao_diferencial(icLocal, icRemoto, IopMin, k);
+sinal_digital_de_atuacao_protecao_fase_C = executa_protecao_diferencial(icLocal, icRemoto, IopMin, k);
 
   % Plota o sinal digital de proteção
   figure;
