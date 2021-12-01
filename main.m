@@ -12,27 +12,46 @@ fclose all;
 clear all;
 clc;
 
-filename = 'AN119_RED';
+filename = 'ABC014_RED';
 
-[iaLocal, ibLocal, icLocal, iaRemoto, ibRemoto, icRemoto ] = adquire_sinal(filename);
+[ iaLocal, ibLocal, icLocal, iaRemoto, ibRemoto, icRemoto ] = adquire_sinal(filename);
 
-IopMin = 5; % A
-k = 1;
+IopMin = 5.5; % A
+k = 0.5;
+
+% Varre o sinal de corrente da fase A e executa a proteção diferencial se necessário
+sinal_digital_de_atuacao_protecao_fase_A = protecao_diferencial(iaLocal, iaRemoto, IopMin, k);
+
+  % Plota o sinal digital de proteção
+  figure;
+  stem(sinal_digital_de_atuacao_protecao_fase_A);
+  title("Sinal digital de atuacao da protecao diferencial - fase A")
+
+  % Detecta em qual amostra do sinal digital original da fase A ocorre o pedido de atuação da proteção
+  amostra_atuacao_fase_A = detecta_amostra_atuacao(sinal_digital_de_atuacao_protecao_fase_A);
+  disp(["Amostra de atuacao: ", num2str(amostra_atuacao_fase_A), " - ", num2str(amostra_atuacao_fase_A*1000/(16*60)), " ms apos inicio do sinal"]);
+
+% Varre o sinal de corrente da fase B e executa a proteção diferencial se necessário
+sinal_digital_de_atuacao_protecao_fase_B = protecao_diferencial(ibLocal, ibRemoto, IopMin, k);
+  
+  % Plota o sinal digital de proteção
+  figure;
+  stem(sinal_digital_de_atuacao_protecao_fase_B);
+  title("Sinal digital de atuacao da protecao diferencial - fase B")
+
+  % Detecta em qual amostra do sinal digital original da fase B ocorre o pedido de atuação da proteção
+  amostra_atuacao_fase_B = detecta_amostra_atuacao(sinal_digital_de_atuacao_protecao_fase_B);
+  disp(["Amostra de atuacao: ", num2str(amostra_atuacao_fase_B), " - ", num2str(amostra_atuacao_fase_B*1000/(16*60)), " ms apos inicio do sinal"]);
 
 
-k = 1;
-correnteDeOperacaoA = [];
-correnteDeResistenciaA = [];
-for i=1:length(iaLocal)
-    correnteDeOperacaoA(i) = abs(iaLocal(i).complex - iaRemoto(i).complex);
-    correnteDeResistenciaA(i) = (iaLocal(i).magnitude + iaRemoto(i).magnitude)/2;
-endfor
+% Varre o sinal de corrente da fase C e executa a proteção diferencial se necessário
+sinal_digital_de_atuacao_protecao_fase_C = protecao_diferencial(icLocal, icRemoto, IopMin, k);
 
-plota_grafico_diferencial(k, IopMin, max(correnteDeResistenciaA), max(correnteDeOperacaoA));
+  % Plota o sinal digital de proteção
+  figure;
+  stem(sinal_digital_de_atuacao_protecao_fase_C);
+  title("Sinal digital de atuacao da protecao diferencial - fase C")
 
-for i=1:length(correnteDeOperacaoA)
-  plot(correnteDeResistenciaA(i), correnteDeOperacaoA(i), 'ob');
-  pause(.1);
-endfor
-
-% plot(abs(correnteDeResistenciaA), abs(correnteDeOperacaoA), 'o');
+  % Detecta em qual amostra do sinal digital original da fase C ocorre o pedido de atuação da proteção
+  amostra_atuacao_fase_C = detecta_amostra_atuacao(sinal_digital_de_atuacao_protecao_fase_C);
+  disp(["Amostra de atuacao: ", num2str(amostra_atuacao_fase_C), " - ", num2str(amostra_atuacao_fase_C*1000/(16*60)), " ms apos inicio do sinal"]);

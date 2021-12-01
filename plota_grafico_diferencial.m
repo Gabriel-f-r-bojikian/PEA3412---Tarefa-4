@@ -1,4 +1,4 @@
-function plota_grafico_diferencial(k, IopMin, tamanho_eixo_x, tamanho_eixo_y);
+function plota_grafico_diferencial(k, IopMin, tamanho_eixo_x = 25, tamanho_eixo_y = 25);
   IresGrafico = 0:0.01:1.25*tamanho_eixo_x;
   IopGrafico = k*IresGrafico;
 
