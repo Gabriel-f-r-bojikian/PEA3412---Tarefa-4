@@ -8,10 +8,22 @@
 %
 % ------------------------------------------------------------------------------------------- %
 
-Para rodar este programa, basta chamar executar o script função "main" no seu ambiente octave.
+Descrição:
+Esta é a função principal do script de simulação da tarefa 4. Ele automatiza 
+o processo de aquisição e tratamento dos sinais de corrente e realiza a
+simulação da proteção diferencial utilizando a decomposição em componentes
+simétricas das correntes.
 
-Para mudar o arquivo .m a ser lido pelo programa, por favor mudar o nome do arquivo "filename" no script "main.m".
-O arquivo .m DEVE estar na pasta ./simulacoes. Pedimos desculpa pela inconveniência.
+Execução:
+Para executar esta simulação:
+1 - certifique-se antes que todos os scripts que 
+    acompanham esta função foram importados corretamente. 
+2 - Após isso, adicione os arquivos de simulação na pasta ./simulacoes, no 
+    mesmo nível deste script 'main.m'.
+3 - Escreva o nome do arquivo o qual você deseja ler na variável 'filename'
+    abaixo, omitindo a extensão '.m' ao fim.
+4 - Finalmente, execute este script no seu ambiente Octave/Matlab.
 
+Créditos:
 Os créditos para as funções "filtro_analogico.m", "fourier.m" e "adquire_sinal.m" vão para o Prof. Dr. Giovanni Manassero Jr.
 do departamento de energia e automação - PEA - da Escola Politécnica da USP.
