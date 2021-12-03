@@ -41,7 +41,7 @@ plota_componentes_simetricas(zeroRemoto, diretaRemoto, inversaRemoto, ["Remoto -
 IopMin = 5.5; % A
 k = 0.5;
 
-% Varre o sinal de corrente da sequencia inversa e executa a proteção diferencial se necessário
+% Varre o sinal de corrente da sequencia zero e executa a proteção diferencial se necessário
 executa_protecao_e_plota(zeroLocal, zeroRemoto, IopMin, k, ["Sequencia Zero - ", filename], true);
 
 % Varre o sinal de corrente da sequencia direta e executa a proteção diferencial se necessário
