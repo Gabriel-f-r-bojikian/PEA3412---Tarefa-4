@@ -16,6 +16,8 @@ filename = 'ABC014_RED';
 
 [ iaLocal, ibLocal, icLocal, iaRemoto, ibRemoto, icRemoto ] = adquire_sinal(filename);
 
+[zero, direta, inversa] = calcula_componentes_simetricas(iaLocal, ibLocal, icLocal);
+
 IopMin = 5.5; % A
 k = 0.5;
 
