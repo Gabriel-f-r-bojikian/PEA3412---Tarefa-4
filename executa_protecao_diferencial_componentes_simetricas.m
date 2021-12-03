@@ -1,4 +1,4 @@
-function [sinal_de_atuacao] = executa_protecao_diferencial(Ilocal, Iremoto, IopMin, k, animacao = false)
+function [sinal_de_atuacao] = executa_protecao_diferencial_componentes_simetricas(Ilocal, Iremoto, IopMin, k, animacao = false)
 
     % Buffers para os sinais de corrente de operação e de restrição
     correnteDeOperacao = []; % Iop
@@ -8,8 +8,8 @@ function [sinal_de_atuacao] = executa_protecao_diferencial(Ilocal, Iremoto, IopM
     % Será necessário iterar ponto a ponto dos sinais de corrente locais e remotos
     % para que se possam fazer as contas fasoriais entre eles.
     for i=1:length(Ilocal)
-        correnteDeOperacao(i) = abs(Ilocal(i).complex - Iremoto(i).complex); % Iop = |I1 - I2|
-        correnteDeResistencia(i) = (Ilocal(i).magnitude + Iremoto(i).magnitude)/2; % Ires = ( |I1| + |I2| )/2
+        correnteDeOperacao(i) = abs(Ilocal(i) - Iremoto(i)); % Iop = |I1 - I2|
+        correnteDeResistencia(i) = (abs(Ilocal(i)) + abs(Iremoto(i)))/2; % Ires = ( |I1| + |I2| )/2
         
         % Checa se a corrente de operação é maior do que a corrente de operação mínima e se
         % ela é maior do que a corrente de restrição multiplicada pelo fator k escolhido.
